@@ -1,0 +1,349 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.popup-fade {
+	display: none;
+}
+
+/* .popup-fade:before {
+	content: '';
+	background: #000;
+	position: fixed; 
+	left: 0;
+	top: 0;
+	width: 100%; 
+	height: 100%;
+	opacity: 0.7;
+	z-index: 9999;
+} */
+.popup {
+	position: fixed;
+	top: 20%;
+	left: 50%;
+	padding: 20px;
+	width: 360px;
+    margin-left: -200px;
+    /* margin-top: 30px;	 */
+	background: #fff;
+	border: 2px solid rgb(96, 99, 99);
+	border-radius: 4px; 
+	z-index: 99999;
+	opacity: 1;	
+}
+.popup-close {
+	position: absolute;
+	top: 10px;
+    right: 10px;
+    color: #000;
+}
+.popup-open {
+    /* display: inline-block; */
+    padding: 15px 20px;
+    background: rgba(44, 62, 80, 0.7);
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    position: absolute;
+    top: 3%;
+    left: 20px;
+    /* margin-left: -76px; */
+}
+.signOut {
+    display: none;
+    padding: 15px 20px;
+    background: rgba(44, 62, 80, 0.7);
+    font-size: 16px;
+    text-decoration: none;
+    color: #fff;
+    position: absolute;
+    top: 3%;
+    left: 20px;
+}
+.links {
+    margin: 20px;
+}
+
+
+
+body {
+    /* color: #fff; */
+    background: #ecf1f4;
+    font-family: sans-serif;
+}
+
+.signup
+{
+    background:rgba(44, 62, 80, 0.7);
+	padding:40px;
+	/* width:250px; */
+	margin:auto;
+	/* margin-top:80px; */
+	/* height:430px;
+	margin-left:180px;
+	margin:0 auto;
+    margin-top:90px; */
+    display: block;
+}
+.signin
+{
+    background:rgba(44, 62, 80, 0.7);
+	padding:40px;
+	/* width:250px; */
+	margin:auto;
+	/* margin-top:80px;
+	height:430px;
+	margin-left:180px;
+	margin:0 auto;
+    margin-top:90px; */
+    display: none;
+}
+form
+{
+    /* width: 240px; */
+    text-align: center;
+    color: #fff;
+}
+
+h1  {
+    text-align: center;
+    color: #fff;
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+
+input {
+    width: 100%;
+    background: none;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    padding: 6px 15px;
+    box-sizing: border-box;
+    /* margin-bottom: 20px; */
+    font-size: 16px;
+    color: #fff;
+}
+
+input[type="button"] {
+    background: white;
+    border: 0;
+    cursor: pointer;
+    color: #3e3d3d;
+}
+
+input[type="button"]:hover {
+    background: #ecece8;
+    transition: .6s;
+}
+
+::placeholder {
+    color: #fff;
+}
+a {
+    color: yellow;
+    text-decoration: blink;
+}
+
+.name_error {
+    padding: 0 15px 3px;
+    color: #d50000;
+    font-size: 12px;
+    margin-top: 3px;
+    display: block;
+}
+
+.fields {
+    margin-bottom: 10px;
+}
+.fields span {
+    display: none;
+}
+
+.fields.has_errors.error_blank .msg-blank {
+    display: block;
+}
+.fields.has_errors.error_validEmail .msg-email {
+    display: block;
+}
+.fields.has_errors.error_blank .msg-fill {
+    display: block;
+}
+.fields.has_errors.error_confirmPassword .msg-confirmPassword {
+    display: block;
+}
+
+.fields.has_errors.error_less .msg-less {
+    display: block;
+}
+.fields.has_errors.error_required .msg-required {
+    display: block;
+}
+
+.fields.has_errors.error_long .msg-long {
+    display: block;
+}
+.fields input {
+    border: 1px solid white;   
+}
+
+.fields.has_errors input {
+    border: 1px solid red;
+}
+
+.fields.has_errors.error_authentication .msg-auth {
+    display: block;
+}
+
+.cong {
+    /* background: rgba(44,62,80,0.7); */
+    /* padding: 40px; */
+    padding: 50px;
+    /* height: 150px; */
+    margin: 0 auto;
+    /* margin-top: 60px; */
+    /* width: 240px; */
+}
+.cong a {
+    margin-left: 5px;
+}
+h2 {
+    margin-top: 35px;
+    margin-left: 10px;
+}
+.congSignUp, .congLogIn {
+    display: none;
+    font-weight: bold;
+    color: green;
+}
+
+#out {
+    /* width: 15%; */
+    margin: 0 auto;
+    padding: 50px;
+    /* text-align: center; */
+}
+table {
+    width: 30%;
+    margin-top: 30px;
+    margin-left: 20px;
+    border-collapse: collapse;
+    text-align: center;
+  }
+  
+  table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  table caption {
+    padding: 5px;
+  }
+  table th {
+    background:rgba(44, 62, 80, 0.7);
+    /* background-color: #d0d3d4; */
+    color: #fff;
+  }
+  .buttons {
+      margin-left: 20px;
+  }
+  .buttons button {
+      width: 60px;
+  }
+
+  /* .modalNew {
+      display: none;
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8);
+  }
+  .modal-contentNew {
+      background-color: #fefefe;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+  }
+  .closeModal {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+  } */
+
+  table.sortable th:hover {
+	cursor: pointer;}
+th.ascending, th.descending, table.sortable th:hover {
+	background-color: #5e6d6d;
+	color: #fff;}
+
+th.ascending:after {
+	font-size: 60%;
+    content: '\25B2';
+    float: left;
+	padding: 4px 5px 0 0;}
+th.descending:after {
+	font-size: 60%;
+    content: '\25BC';
+    float: left;
+    padding: 4px 5px 0 0;}
+    
+    table.sortable input {
+        color: black;
+    }
+
+    .btnEdit {
+        width: 50px;
+        padding: 2px;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+    .modal-window {
+        width: 600px;
+        border-radius: 5px;
+        background: #fff;
+        margin: 100px auto;
+        /* color: black; */
+        /*temp*/
+        /* height: 400px; */
+    }
+    .modal-header {
+        padding: 5px 10px;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid #eee;
+    }
+
+    .modal-title {
+        font-size: 1.5rem;
+    }
+    .modal-close {
+        cursor: pointer;
+    }
+    .modal-body {
+        padding: 10px;
+    }
+
+    .modal-body input {
+        color: black;
+    }
+    .modal-footer {
+        padding: 5px 10px;
+        border-top: 1px solid #eee;
+    }
+
+    /* .eModal {
+        display: none;
+    } */
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="modal.css">
+</head>
+
+<body>
+    <div class="links">
+        <a class="popup-open" href="#">Open</a>
+    </div>
+    <div class="links">
+        <a class="signOut" href="#">SignOut</a>
+    </div>
+
+
+    <table class="sortable"></table>
+
+    <!-- <a class="popup-open" href="#">Open</a>
+    <a class="signOut" href="#">SignOut</a> -->
+
+    <div class="popup-fade">
+        <div class="popup">
+            <a href="#" class="popup-close">&times;</a>
+            <div class="signup">
+                <h1>Sign Up!!</h1>
+                <form action="" method="post" name="test" id="formSignUp">
+                    <div class="fields">
+                        <input class="field" id="name" name="name" type="text" placeholder="Name" data-errors="blank">
+                        <span class="name_error msg-blank">Name is required</span>
+
+                    </div>
+                    <div class="fields">
+                        <input class="field" id="lastName" name="lastName" type="text" placeholder="Last Name"
+                            data-errors="blank">
+                        <span class="name_error  msg-blank">Last Name is required</span>
+                    </div>
+                    <div class="fields">
+                        <input class="field" id="email" type="text" name="email" placeholder="Email"
+                            data-errors="validEmail">
+                        <span class="name_error  msg-blank">Email is required</span>
+                        <span class="name_error  msg-email">Email is incorrect</span>
+                    </div>
+                    <div class="fields">
+                        <input class="field" id="password" name="password" type="password" placeholder="Password"
+                            data-errors="long less required blank">
+                        <span class="name_error msg-blank">Password is required.</span>
+                        <span class="name_error msg-long">Password must be longer than 3 characters</span>
+                        <span class="name_error msg-less">Password must be less than 10 characters</span>
+                        <span class="name_error msg-required">Password cannot be password</span>
+                    </div>
+                    <div class="fields">
+                        <input class="field" id="confirmPassword" name="confirmPassword" type="password"
+                            placeholder="Confirm Password" data-errors="confirmPassword blank">
+                        <!-- <span class="name_error msg-fill">Fill in a confirmation password.</span> -->
+                        <span class="name_error msg-blank">Confirmation password is required.</span>
+                        <span class="name_error msg-confirmPassword">Your password and confirmation password do not
+                            match.</span>
+                    </div>
+
+                    <input id="btn" type="submit" value="Sign Up">
+
+                    Already have account?<a href="#" id="logIn"
+                        style="text-decoration: none; font-family: 'Play', sans-serif; color: yellow;">&nbsp;Log In</a>
+
+                </form>
+
+
+            </div>
+            <div class="signin">
+                <h1>Log In</h1>
+                <form action="" method="post" name="test" id="formLogIn">
+                    <div class="fields">
+                        <input class="field" id="email_logIn" name="email" type="text" placeholder="Email address"
+                            data-errors="blank authentication">
+                        <span class="name_error msg-blank">Cannot be blank</span>
+                        <span class="name_error msg-auth">Email or Password is incorrect</span>
+                    </div>
+
+                    <div class="fields">
+                        <input class="field" id="password_logIn" name="password" type="password" placeholder="Password"
+                            data-errors="blank authentication">
+                        <span class="name_error msg-blank">Cannot be blank</span>
+                        <span class="name_error msg-auth">Email or Password is incorrect</span>
+                    </div>
+
+
+                    <input id="btn_logIn" type="submit" value="Log In" />
+                    Don't have account?<a href="#" id="signUp" style="font-family:'Play', sans-serif;">&nbsp;Sign Up</a>
+                </form>
+            </div>
+
+
+        </div>
+
+        <div class="congSignUp">
+            <div class="cong">
+                <h2>Congratulations you Sign Up successfully!</h2>
+                <a href="#" id="logInPage" style="color:blue">&nbsp;Log In Page</a>
+            </div>
+        </div>
+
+        <div class="congLogIn">
+
+            <div id="out"></div>
+            <!-- <table id="table"></table> -->
+
+        </div>
+
+    </div>
+
+
+    <div class="eModal">
+        <div class="modal-overlay">
+            <div class="modal-window">
+                <div class="modal-header">
+                    <span class="modal-title">Edit Users</span>
+                    <span class="modal-close">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <!-- <form action="" id="editForm"> -->
+                    <input type="text" id="input1" value="1" placeholder="Name">
+                    <input type="text" id="input2" value="2" placeholder="Last Name">
+                    <input type="text" id="input3" value="3" placeholder="Password">
+                    <input type="text" id="input4" value="4" placeholder="Password">
+                    <!-- </form> -->
+                </div>
+                <div class="modal-footer">
+                    <button>Ok</button>
+                    <button>Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="modal.js"></script>
+    <script src="data.js"></script>
+    <script src="loginLocalStorage.js"></script>
+    <script src="editTable.js"></script>
+    <!-- <script src="sort-table.js"></script> -->
+</body>
+
+</html>
