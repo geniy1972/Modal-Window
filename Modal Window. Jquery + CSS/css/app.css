@@ -1,0 +1,40 @@
+#modal {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    overflow: auto;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+.container {
+    margin: 25vh 25vw;
+    width: 50vw;
+    height: 50vh;
+    background: white;
+    box-sizing: border-box;
+    padding: 15px;
+    position: relative;
+}
+.container .closeModal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+}
+.modalContent {
+display: none;
+}
+.wrapper {
+    width: 600px;
+    margin: 100px auto;
+}
+.wrapper h2 {
+    text-align: center;
+    color: white;
+    background: rgb(0, 29, 38);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
