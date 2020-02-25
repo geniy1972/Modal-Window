@@ -337,6 +337,12 @@ th.descending:after {
 
     .modal-body input {
         color: black;
+        border: 1px solid #000;
+    }
+    .modal-body label {
+        padding: 5px 15px;
+        font-weight: bold;
+        
     }
     .modal-footer {
         padding: 5px 10px;

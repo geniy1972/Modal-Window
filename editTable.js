@@ -77,6 +77,11 @@ function editTable3() {
         $(input3).html(col3);
         $(input4).html(col4);
 
+        $(input1).val(col1);
+        $(input2).val(col2);
+        $(input3).val(col3);
+        $(input4).val(col4);
+
         // $(eForm).append(input1);
         // $(eForm).append(input2);
         // $(eForm).append(input3);
