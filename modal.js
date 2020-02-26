@@ -1,9 +1,5 @@
 $(document).ready(function ($) {
 
-
-
-
-
     //let table = $('#table');
     let $table = $('.sortable');
 
@@ -61,7 +57,7 @@ $(document).ready(function ($) {
     if (localStorage.getItem('loggedUsersArray')) {
         loggedUser = JSON.parse(localStorage.getItem('loggedUsersArray'));
     }
-    console.log(loggedUser);
+    //console.log(loggedUser);
     $('#formSignUp').on('submit', valid);
     $('#formLogIn').on('submit', valid_login);
 
@@ -388,16 +384,6 @@ $(document).ready(function ($) {
             createTable();
             editTable3();//
 
-            // $(".btnEdit").on('click', function () {
-            //     let currentRow = $(this).closest("tr");
-            //     console.log(currentRow);
-            //     let col1 = currentRow.find("td:eq(0)").html();
-            //     let col2 = currentRow.find("td:eq(1)").html();
-            //     let col3 = currentRow.find("td:eq(2)").html();
-            //     let col4 = currentRow.find("td:eq(3)").html();
-            //     let data = col1 + "\n" + col2 + "\n" + col3 + "\n" + col4;
-            //     alert(data);
-            // });
 
         }
 
@@ -444,6 +430,7 @@ $(document).ready(function ($) {
                 removeTable();
                 createTable();
                 editTable3();//
+
 
                 $('.congLogIn').fadeIn();
 
