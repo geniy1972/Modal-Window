@@ -38,6 +38,7 @@ $(document).ready(function ($) {
     $('.signOut').click(function () {
         //e.stopPropagation();
         location.reload();
+        localStorage.removeItem('loggedUsersArray');
         // $('.popup-fade').fadeOut(600);
         // //$('.popup').fadeOut(600);
         // $('.signOut').fadeOut();
@@ -198,139 +199,132 @@ $(document).ready(function ($) {
     $('#formLogIn').on('change', removeErrors);
 
 
-    //
+    // function createTable() {
+    //     //$($table).empty();
+    //     let $table = $('.sortable');
 
+    //     let $tbody = $('<tbody></tbody>');
+    //     let $thead = $('<thead></thead>');
+    //     let tr = $('<tr></tr>');
+    //     let caption = $('<caption><h2>List of Users</h2></caption>')
 
-    //let table = $('#table');
-    function createTable() {
-        //$(table).empty();
+    //     $.each(objArray[0], function (key, value) {
 
-        // let $table = $('<table></table>');
-        // $($table).addClass('sortable');
-        let $tbody = $('<tbody></tbody>');
-        let $thead = $('<thead></thead>');
-        let tr = $('<tr></tr>');
-        let caption = $('<caption><h2>List of Users</h2></caption>')
+    //         let th = $('<th></th>');
+    //         $(th).attr('data-sort', 'name');//
+    //         $(th).text(key);
+    //         $(tr).append(th);
 
-        $.each(objArray[0], function (key, value) {
+    //         $($table).append($thead); //
+    //         $($thead).append(tr);
+    //     })
+    //     let thAction = $('<th>Action</th>');//
+    //     $(tr).append(thAction);//
+    //     $(thAction).attr('data-sort', 'action');//
+    //     //$(table).append(tr);
 
+    //     $.each(objArray, function (obj, data) {
 
-            let th = $('<th></th>');
-            $(th).attr('data-sort', 'name');//
-            $(th).text(key);
-            $(tr).append(th);
+    //         let tr = $('<tr></tr>');
 
-            $($table).append($thead); //
-            $($thead).append(tr);
-        })
-        let thAction = $('<th>Action</th>');//
-        $(tr).append(thAction);//
-        $(thAction).attr('data-sort', 'action');//
-        //$(table).append(tr);
+    //         $.each(data, function (key, value) {
+    //             let td = $('<td></td>');
+    //             $(td).text(value);
+    //             $(tr).append(td);
+    //             $($tbody).append(tr);//
+    //         })
 
-        $.each(objArray, function (obj, data) {
+    //         let tdEdit = $('<td></td>');
+    //         let btnEdit = $('<button>Edit</button>');
+    //         $(btnEdit).addClass('btnEdit');
+    //         $(tdEdit).append(btnEdit);
+    //         $(tr).append(tdEdit);
 
-            let tr = $('<tr></tr>');
+    //         $($table).append(caption);
+    //         //$(table).append(tr);
+    //         $($table).append($tbody);//
 
-            $.each(data, function (key, value) {
-                let td = $('<td></td>');
-                $(td).text(value);
-                $(tr).append(td);
-                $($tbody).append(tr);//
-            })
+    //     })
 
-            let tdEdit = $('<td></td>');
-            let btnEdit = $('<button>Edit</button>');
-            $(btnEdit).addClass('btnEdit');
-            $(tdEdit).append(btnEdit);
-            $(tr).append(tdEdit);
+    //     let compare = {
+    //         name: function (a, b) {
+    //             if (a < b) {
+    //                 return -1;
+    //             } else {
+    //                 return a > b ? 1 : 0;
+    //             }
+    //         },
+    //         time: function (a, b) {
+    //             a = a.split(':');
+    //             b = b.split(':');
 
-            $($table).append(caption);
-            //$(table).append(tr);
-            $($table).append($tbody);//
+    //             a = Number(a[0]) * 60 + Number(a[1]);
+    //             b = Number(b[0]) * 60 + Number(b[1]);
 
-        })
+    //             return a - b;
+    //         },
+    //         date: function (a, b) {
+    //             a = new Date(a);
+    //             b = new Date(b);
 
-        let compare = {
-            name: function (a, b) {
-                if (a < b) {
-                    return -1;
-                } else {
-                    return a > b ? 1 : 0;
-                }
-            },
-            time: function (a, b) {
-                a = a.split(':');
-                b = b.split(':');
+    //             return a - b;
+    //         }
+    //     };
 
-                a = Number(a[0]) * 60 + Number(a[1]);
-                b = Number(b[0]) * 60 + Number(b[1]);
+    //     $('.sortable').each(function () {
+    //         let $table = $(this);
+    //         //console.log($table);
+    //         let $tbody = $table.find('tbody');
+    //         //console.log($tbody);
+    //         let $controls = $table.find('th');
 
-                return a - b;
-            },
-            date: function (a, b) {
-                a = new Date(a);
-                b = new Date(b);
+    //         let rows = $tbody.find('tr').toArray();
+    //         //console.log(rows);
 
-                return a - b;
-            }
-        };
+    //         $controls.on('click', function () {
+    //             let $header = $(this);
 
-        $('.sortable').each(function () {
-            let $table = $(this);
-            //console.log($table);
-            let $tbody = $table.find('tbody');
-            //console.log($tbody);
-            let $controls = $table.find('th');
+    //             let order = $header.data('sort');
 
-            let rows = $tbody.find('tr').toArray();
-            //console.log(rows);
+    //             let column;
 
-            $controls.on('click', function () {
-                let $header = $(this);
+    //             if ($header.is('.ascending') || $header.is('.descending')) {
 
-                let order = $header.data('sort');
+    //                 $header.toggleClass('ascending descending');
 
-                let column;
+    //                 $tbody.html(rows.reverse());
 
-                if ($header.is('.ascending') || $header.is('.descending')) {
+    //             } else {
 
-                    $header.toggleClass('ascending descending');
+    //                 $header.addClass('ascending');
 
-                    $tbody.html(rows.reverse());
+    //                 $header.siblings().removeClass('ascending descending');
 
-                } else {
+    //                 if (compare.hasOwnProperty(order)) {
+    //                     column = $controls.index(this);
 
-                    $header.addClass('ascending');
+    //                     rows.sort(function (a, b) {
+    //                         a = $(a).find('td').eq(column).text();
+    //                         b = $(b).find('td').eq(column).text();
 
-                    $header.siblings().removeClass('ascending descending');
+    //                         return compare[order](a, b);
 
-                    if (compare.hasOwnProperty(order)) {
-                        column = $controls.index(this);
+    //                     });
 
-                        rows.sort(function (a, b) {
-                            a = $(a).find('td').eq(column).text();
-                            b = $(b).find('td').eq(column).text();
+    //                     $tbody.html(rows);
+    //                 }
+    //             }
+    //         });
+    //     });
 
-                            return compare[order](a, b);
+    // };
 
-                        });
-
-                        $tbody.html(rows);
-                    }
-                }
-            });
-        });
-
-    };
     function removeTable() {
         $($table).empty();
     }
 
     createTable();
     editTable3();//
-
-
 
 
 

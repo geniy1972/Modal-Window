@@ -1,46 +1,147 @@
-function editTable() {
-    let tds = document.querySelectorAll('td');
 
-    for (i = 0; i < tds.length; i++) {
-        tds[i].addEventListener('click', function func() {
-            let input = document.createElement('input');
-            input.value = this.innerHTML;
-            this.innerHTML = '';
-            this.appendChild(input);
+// function editTable() {
+//     let tds = document.querySelectorAll('td');
 
-            let td = this;
-            input.addEventListener('blur', function () {
-                td.innerHTML = this.value;
-                td.addEventListener('click', func);
-            });
+//     for (i = 0; i < tds.length; i++) {
+//         tds[i].addEventListener('click', function func() {
+//             let input = document.createElement('input');
+//             input.value = this.innerHTML;
+//             this.innerHTML = '';
+//             this.appendChild(input);
 
-            this.removeEventListener('click', func);
+//             let td = this;
+//             input.addEventListener('blur', function () {
+//                 td.innerHTML = this.value;
+//                 td.addEventListener('click', func);
+//             });
+
+//             this.removeEventListener('click', func);
+//         })
+//     }
+// }
+
+
+let $table = $('.sortable');
+
+function createTable() {
+    //$($table).empty();
+    //let $table = $('.sortable');
+
+    let $tbody = $('<tbody></tbody>');
+    let $thead = $('<thead></thead>');
+    let tr = $('<tr></tr>');
+    let caption = $('<caption><h2>List of Users</h2></caption>')
+
+    $.each(objArray[0], function (key, value) {
+
+        let th = $('<th></th>');
+        $(th).attr('data-sort', 'name');//
+        $(th).text(key);
+        $(tr).append(th);
+
+        $($table).append($thead); //
+        $($thead).append(tr);
+    })
+    let thAction = $('<th>Action</th>');//
+    $(tr).append(thAction);//
+    $(thAction).attr('data-sort', 'action');//
+    //$(table_main).append(tr);
+
+    $.each(objArray, function (obj, data) {
+
+        let tr = $('<tr></tr>');
+
+        $.each(data, function (key, value) {
+            let td = $('<td></td>');
+            $(td).text(value);
+            $(tr).append(td);
+            $($tbody).append(tr);//
         })
-    }
-}
 
-function editTable2() {
-    let tds = $('td');
+        let tdEdit = $('<td></td>');
+        let btnEdit = $('<button>Edit</button>');
+        $(btnEdit).addClass('btnEdit');
+        $(tdEdit).append(btnEdit);
+        $(tr).append(tdEdit);
 
-    $(tds).each(function (i) {
-        console.log(i + ": " + $(this).text());
-        $(tds[i]).on('click', function func() {
-            let input = $('<input></input>');
-            input.value = $(this).html();
-            $(this).html('');
-            $(this).append(input);
+        $($table).append(caption);
+        //$(table).append(tr);
+        $($table).append($tbody);//
 
-            let td = this;
-            $(input).on('blur', function () {
-                $(td).html() = $(this).val();
-                $(td).on('click', func)
-            });
+    })
 
-            $(this).off('click', func);
-        })
+    let compare = {
+        name: function (a, b) {
+            if (a < b) {
+                return -1;
+            } else {
+                return a > b ? 1 : 0;
+            }
+        },
+        time: function (a, b) {
+            a = a.split(':');
+            b = b.split(':');
+
+            a = Number(a[0]) * 60 + Number(a[1]);
+            b = Number(b[0]) * 60 + Number(b[1]);
+
+            return a - b;
+        },
+        date: function (a, b) {
+            a = new Date(a);
+            b = new Date(b);
+
+            return a - b;
+        }
+    };
+
+    $('.sortable').each(function () {
+        let $table = $(this);
+        //console.log($table);
+        let $tbody = $table.find('tbody');
+        //console.log($tbody);
+        let $controls = $table.find('th');
+
+        let rows = $tbody.find('tr').toArray();
+        //console.log(rows);
+
+        $controls.on('click', function () {
+            let $header = $(this);
+
+            let order = $header.data('sort');
+
+            let column;
+
+            if ($header.is('.ascending') || $header.is('.descending')) {
+
+                $header.toggleClass('ascending descending');
+
+                $tbody.html(rows.reverse());
+
+            } else {
+
+                $header.addClass('ascending');
+
+                $header.siblings().removeClass('ascending descending');
+
+                if (compare.hasOwnProperty(order)) {
+                    column = $controls.index(this);
+
+                    rows.sort(function (a, b) {
+                        a = $(a).find('td').eq(column).text();
+                        b = $(b).find('td').eq(column).text();
+
+                        return compare[order](a, b);
+
+                    });
+
+                    $tbody.html(rows);
+                }
+            }
+        });
     });
 
-}
+};
 
 
 let input1 = $('#input1');
@@ -48,7 +149,7 @@ let input2 = $('#input2');
 let input3 = $('#input3');
 let input4 = $('#input4');
 
-let col1, col2, col3, col4;
+let currentRow, col1_name, col2_lastname, col3_password, col4_email;
 
 
 //let data = [];
@@ -57,39 +158,23 @@ function editTable3() {
     // code to read selected table row cell data (values).
     $(".btnEdit").on('click', function () {
         $('.eModal').fadeIn(600);
-        let currentRow = $(this).closest("tr");
+        currentRow = $(this).closest("tr");
 
-        // let col1 = currentRow.find("td:eq(0)").html();
-        // let col2 = currentRow.find("td:eq(1)").html();
-        // let col3 = currentRow.find("td:eq(2)").html();
-        // let col4 = currentRow.find("td:eq(3)").html();
+        col1_name = currentRow.find("td:eq(0)").html();
+        col2_lastname = currentRow.find("td:eq(1)").html();
+        col3_password = currentRow.find("td:eq(2)").html();
+        col4_email = currentRow.find("td:eq(3)").html();
 
-        col1 = currentRow.find("td:eq(0)").html();
-        col2 = currentRow.find("td:eq(1)").html();
-        col3 = currentRow.find("td:eq(2)").html();
-        col4 = currentRow.find("td:eq(3)").html();
-        console.log('col4: ' + col4);
+        dataObj.email = col4_email;
 
-        //data.push(col1, col2, col3, col4);
-
-        dataObj.name = col1;
-        dataObj.lastName = col2;
-        dataObj.password = col3;
-        dataObj.email = col4;
-
-        $(input1).val(col1);
-        $(input2).val(col2);
-        $(input3).val(col3);
-        $(input4).val(col4);
-        // console.log(data);
-        // console.log(dataObj);
+        $(input1).val(col1_name);
+        $(input2).val(col2_lastname);
+        $(input3).val(col3_password);
+        $(input4).val(col4_email);
 
     });
 
-
 }
-
-//a = $(a).find('td').eq(column).text();
 
 let okBtn = $('#ok');
 let cancelBtn = $('#cancel');
@@ -104,60 +189,26 @@ function changeTable() {
         $(this).parents('.eModal').fadeOut(600);
 
     });
-    // data[0] = input1.val();
-    // data[1] = input2.val();
-    // data[2] = input3.val();
-    //data[3] = input4.val();
-    // console.log(data);
+
     dataObj.name = input1.val();
     dataObj.lastName = input2.val();
     dataObj.password = input3.val();
-    //dataObj.email = input4.val();
-    console.log(dataObj);
 
+    $.each(objArray, function (index, object) {
 
-    objArray.push(dataObj);
-    console.log(objArray);
+        if (object.email === col4_email) {
+            object.name = input1.val();
+            object.lastName = input2.val();
+            object.password = input3.val();
 
+            currentRow.find("td:eq(0)").html(input1.val());
+            currentRow.find("td:eq(1)").html(input2.val());
+            currentRow.find("td:eq(2)").html(input3.val());
 
-    //localStorage.setItem("savedUsersArray", JSON.stringify(objArray));
-
-    // $.each(objArray, function (obj, data) {
-    //     console.log(data);
-    //     //console.log(data['email']);
-    //     if ($(col4) === data['email']) {
-    //         data['name'] = input1.val();
-    //         data['lastName'] = input2.val();
-    //         data['password'] = input3.val();
-    //         //localStorage.setItem("savedUsersArray", JSON.stringify(objArray));
-    //     }
-    // })
-
-
-    // for (let i = 0; i < objArray.length; i++) {
-    //     $.each(objArray[i], function (key, value) {
-    //         if ($(col4) === value['email']) {
-    //             console.log(value['email'])
-    //             value['name'] = input1.val();
-    //             value['lastName'] = input2.val();
-    //             value['password'] = input3.val();
-    //             localStorage.setItem("savedUsersArray", JSON.stringify(objArray));
-    //         }
-    //     })
-    // }
-
-    for (let i = 0; i < objArray.length; i++) {
-        //console.log(objArray[i].email);
-        console.log(objArray[i]);
-        if (objArray[i].email === $(col4)) {
-
-            objArray[i].name = input1.val();
-            objArray[i].lastName = input2.val();
-            objArray[i].password = input3.val();
-            console.log(objArray[i]);
-            //localStorage.setItem("savedUsersArray", JSON.stringify(objArray));
         }
-    }
+
+    });
+    localStorage.setItem("savedUsersArray", JSON.stringify(objArray));
 
 
     $(this).parents('.eModal').fadeOut(600);
@@ -166,18 +217,13 @@ function changeTable() {
 
 $(okBtn).on('click', changeTable);
 
-// function compareUsers() {
-//     //let flag = false;
-//     $.each(objArray, function (obj, data) {
-//         if ($(col4) === data['email']) {
-//             alert('User has already been created');
-//             //console.log(data['email'])
-//             //flag = true;
-//         }
 
-//     })
-//     //return flag;
-// }
+
+
+
+
+
+
 
 
 
